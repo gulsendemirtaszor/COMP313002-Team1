@@ -11,6 +11,7 @@ namespace Books.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please specify a name")]
+
         public String Title { get; set; }
 
         [Required(ErrorMessage = "Please specify the author")]
