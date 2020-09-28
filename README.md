@@ -1,7 +1,5 @@
 # COMP313002-Team1
 
-# COMP231 Books Trading System
-
 ### Useful commands
 ```
 dotnet ef migrations add Initial
