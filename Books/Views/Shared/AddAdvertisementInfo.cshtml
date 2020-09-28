@@ -1,0 +1,58 @@
+﻿@model SearchListViewModel
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@*<div asp-validation-summary="All"></div>*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info text-center">
+            <b>NOTE:</b>&nbsp;Please fill-up field below
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label asp-for="@Model.advertisementsListViewModel.advertisement.Title">Title: </label>
+            <div><span asp-validation-for="@Model.advertisementsListViewModel.advertisement.Title" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.advertisementsListViewModel.advertisement.Title"
+                   placeholder="-----" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label asp-for="@Model.advertisementsListViewModel.advertisement.Description">Description: </label>
+            <div><span asp-validation-for="@Model.advertisementsListViewModel.advertisement.Description" class="text-danger"></span></div>
+            <textarea class="form-control" asp-for="@Model.advertisementsListViewModel.advertisement.Description"
+                      rows="5" placeholder="-----"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.advertisementsListViewModel.advertisement.Status">Status: </label>
+            <input class="form-control" asp-for="@Model.advertisementsListViewModel.advertisement.Status" readonly="readonly"
+                   value="New" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.advertisementsListViewModel.advertisement.RequestedBy">Requested By: </label>
+            <input class="form-control" asp-for="@Model.advertisementsListViewModel.advertisement.RequestedBy" readonly="readonly" 
+                   value="@User.Identity.Name"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.advertisementsListViewModel.advertisement.DateRequested">Date Requested: </label>
+            <input type="datetime" class="form-control" asp-for="@Model.advertisementsListViewModel.advertisement.DateRequested" 
+                   readonly="readonly" value="@DateTime.Now"/>
+        </div>
+    </div>
+</div>

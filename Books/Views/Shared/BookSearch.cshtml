@@ -1,0 +1,31 @@
+﻿@model SearchListViewModel
+
+<form asp-action="SearchResult" asp-controller="Book">
+    <div class="input-group">
+        <input type="text" asp-for="@Model.bookInfoListViewModel.bookSearch.Item" class="form-control" placeholder="Search"
+               autocomplete="off" />
+
+        <select class="custom-select" asp-for="@Model.bookInfoListViewModel.bookSearch.Category">
+            <option selected>-----</option>
+
+            @foreach (Category c in Model.bookInfoListViewModel.Categories)
+            {
+                <option value="@c.Id">@c.Name</option>
+            }
+
+        </select>
+
+        <input type="text" class="form-control" 
+               asp-for="@Model.bookInfoListViewModel.bookSearch.PriceFrom" 
+               placeholder="From - $ 0.00" autocomplete="off" />
+        <input type="text" class="form-control" 
+               asp-for="@Model.bookInfoListViewModel.bookSearch.PriceTo" 
+               placeholder="To - $ 0.00" autocomplete="off" />
+
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-success">
+                <i class="fa fa-search"></i>&nbsp;Search
+            </button>
+        </div>
+    </div>
+</form>

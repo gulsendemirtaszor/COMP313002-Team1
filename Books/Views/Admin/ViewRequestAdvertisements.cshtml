@@ -1,0 +1,53 @@
+﻿@model SearchListViewModel
+
+@{
+    Layout = "_LayoutPage";
+}
+
+@if (TempData["returnMessage"] == null)
+{
+    <h3 style="margin-top:30px;color:#1F618D"><i class="fa fa-eye"></i>&nbsp;@ViewBag.Title</h3>
+    <hr />
+}
+else
+{
+    <h3 style="margin-top:30px;color:#1F618D"><i class="fa fa-eye"></i>&nbsp;@TempData["returnMessage"]</h3>
+    <hr />
+}
+
+@if (TempData["successMessage"] != null)
+{
+    <div class="alert alert-success text-center">
+        <i class="fa fa-check-circle"></i>&nbsp;@TempData["successMessage"]
+    </div>
+}
+
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td class="w-25 table-primary">Title:</td>
+            <td>@Model.advertisementsListViewModel.advertisement.Title</td>
+        </tr>
+        <tr>
+            <td class="table-primary">Description:</td>
+            <td>@Model.advertisementsListViewModel.advertisement.Description</td>
+        </tr>
+        <tr>
+            <td class="table-primary">Status:</td>
+            <td>@Model.advertisementsListViewModel.advertisement.Status</td>
+        </tr>
+        <tr>
+            <td class="table-primary">Requested By:</td>
+            <td>@Model.advertisementsListViewModel.advertisement.RequestedBy</td>
+        </tr>
+        <tr>
+            <td class="table-primary">Date Requested:</td>
+            <td>@Model.advertisementsListViewModel.advertisement.DateRequested</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<center>
+    <a asp-action="ListAdvertisements" class="btn btn-secondary w-25">Back to Home</a>
+</center>

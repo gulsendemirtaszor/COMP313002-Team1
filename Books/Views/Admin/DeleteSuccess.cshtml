@@ -1,0 +1,20 @@
+﻿@*@model SearchListViewModel*@
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-6">
+        <div class="card text-center" style="border:0">
+            <img class="card-img-top img-thumbnail" src="~/images/success.png" alt="success image"
+                 style="width:256px;height:256px;margin:auto;border:0">
+            <div class="card-body">
+                <h5 class="card-title">Successfully deleted user!</h5>
+                <a asp-action="ListUsers" asp-controller="Admin" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">&nbsp;</div>
+</div>

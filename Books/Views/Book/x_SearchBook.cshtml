@@ -1,0 +1,23 @@
+﻿@model Books.Models.ViewModels.BooksListViewModel
+@{ 
+    Layout = "_Layout";
+}
+
+<center>
+    <table class="table table-responsive table-bordered">
+        <tbody>
+            @foreach (Books.Models.Book b in Model.Books)
+            {
+            <tr>
+                <td>@b.Title</td>
+                <td>@b.Author</td>
+                <td>@b.Category</td>
+                <td>@b.Conditions</td>
+                <td>@b.PublicationDate</td>
+                <td>@b.Price</td>
+                <td>@b.Preview</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</center>

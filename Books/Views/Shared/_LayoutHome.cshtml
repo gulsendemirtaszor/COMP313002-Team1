@@ -1,0 +1,280 @@
+﻿@model SearchListViewModel
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+
+    <title>PaperBack</title>
+
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
+</head>
+<body>
+    <script src="~/lib/jquery/jquery.slim.min.js"></script>
+    <script src="~/lib/popper/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/">
+            <img src="~/images/books.png" class="img-fluid" width="64" />
+        </a>
+        <h4 style="padding-right:10px">PaperBack</h4>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="form-inline my-2 my-lg-0 mr-sm-2 w-100 justify-content-end">
+
+                @await Html.PartialAsync("BookSearch")
+
+            </div>
+
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <div class="btn-group" role="group" aria-label="Login or Register">
+                    <a class="btn btn-outline-primary"
+                       asp-action="Register" asp-controller="Register">
+                        <i class="fa fa-pen"></i>&nbsp;Register
+                    </a>
+                    <a class="btn btn-outline-primary"
+                       asp-action="Login" asp-controller="Account">
+                        <i class="fa fa-key"></i>&nbsp;Login
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="topbar-divider d-none d-sm-block"></div>
+                <div class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="usernameContent" class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome <b>@User.Identity.Name</b></span>
+                        <img class="img-profile rounded-circle" src="~/images/user.png" width="40" height="40">
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="dropdown-item" asp-action="ListCategory" asp-controller="Category">
+                                <i class="fa fa-cog"></i>
+                                Category
+                            </a>
+                            <a class="dropdown-item" asp-action="ListCondition" asp-controller="Condition">
+                                <i class="fa fa-cog"></i>
+                                Condition
+                            </a>
+                            <a class="dropdown-item" asp-action="ListUsers" asp-controller="Admin">
+                                <i class="fa fa-user-alt"></i>
+                                Users List
+                            </a>
+                            <a class="dropdown-item" asp-action="ListAdvertisements" asp-controller="Admin">
+                                <i class="fa fa-user-alt"></i>
+                                Advertisement Requests
+                            </a>
+                        }
+                        else
+                        {
+                            @*<a class="dropdown-item" href="?view=profile">
+                <i class="fa fa-user"></i>
+                Profile
+            </a>*@
+                            <a class="dropdown-item" asp-action="EditUser" asp-controller="User"
+                               asp-route-userName="@User.Identity.Name">
+                                <i class="fa fa-user"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" asp-action="RequestAdvertisement" asp-controller="Book"
+                               asp-route-userName="@User.Identity.Name">
+                                <i class="fa fa-edit"></i>
+                                Request Advertisement
+                            </a>
+                        }
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-action="AddBook" asp-controller="Book">
+                            <i class="fa fa-dollar-sign"></i>
+                            Sell Book
+                        </a>
+                        <a class="dropdown-item" asp-action="ListBooks" asp-controller="Book"
+                           asp-route-userName="@User.Identity.Name">
+                            <i class="fa fa-book"></i>
+                            Your Books
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-action="Logout" asp-controller="Account">
+                            <i class="fa fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </nav>
+
+    <section class="jumbotron" style="background-color:transparent;background-image:url('~/wwwroot/images/bookshelf.jpg')">
+        <div class="container" style="color:#fff">
+            <h1>Tired of looking for books?</h1>
+            <p style="color:#ffffff !important" class="lead text-muted">Sherlock Holmes sat for some time in silence, with his head sunk forward and his eyes bent upon the red glow of the fire. Then he lit his pipe, and leaning back in his chair he watched the blue smoke-rings as they chased each other up to the ceiling.</p>
+            <p>
+                @*<a href="#" class="btn btn-primary my-2">Let's get started</a>*@
+                @*<a asp-action="BuyingTips" asp-controller="Book" class="btn btn-primary my-2">Buying Tips</a>*@
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buyingTipsModal">
+                    Buying Tips
+                </button>
+            </p>
+        </div>
+    </section>
+
+    <!-- Buying Tips Modal -->
+    <div class="modal fade" id="buyingTipsModal" tabindex="-1" role="dialog" aria-labelledby="buyingTipsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="buyingTipsModalLabel">Buying Tips</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <p><img alt="BuyingTips" class="img-thumbnail" height="64" src="~/images/BuyingTips.jpg"></p>
+                    </center>
+                    <p>Below is our website buying tips for you:</p>
+                    <ul>
+                        <li>Tip 1: Click Register button to register. </li>
+                        <li>Tip 2: Login your account.</li>
+                    </ul>
+
+                    <p>If you are a buyer:</p>
+                    <ul>
+                        <li>Tip 3: You could search used textbook information by name, or filter by category and price range.</li>
+                        <li>Tip 4: You could view details of the book and contact information of the seller.</li>
+                        <li>Tip 5: Just contact the seller from the contact information of the seller.</li>
+                        <li>Tip 6: You could see your profile and edit.</li>
+                    </ul>
+
+                    <p>If you are a seller:</p>
+                    <ul>
+                        <li>Tip 7: Click sell book button and fill the information then click save button.</li>
+                        <li>Tip 8: You could click your books button to see the textbooks information your posted.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <div class="container" style="margin-bottom:30px">
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom:30px">
+                <h3>
+                    <img src="~/images/books_f.png" width="64" />
+                    <span style="font-family:Calibri">&nbsp;&nbsp;Advertisements</span>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+
+            @{
+                var _recordCount = Model.advertisementsListViewModel.Advertisements
+                    .Where(ads => ads.Status == "Approved").Count();
+
+                if (_recordCount > 0)
+                {
+                    <div class="alert alert-success text-center col-md-12">
+                        <i class="fa fa-check-circle"></i>&nbsp;Successfully loaded advertisement post(s)
+                    </div>
+
+                    <div class="list-group col-md-12">
+
+                        @foreach (var ads in Model.advertisementsListViewModel.Advertisements
+                         .Where(ads => ads.Status == "Approved"))
+                        {
+                            <a href="#" style="pointer-events:none;" class="list-group-item list-group-item-action align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">@ads.Title</h5>
+                                    <small>Posted on: @ads.DateRequested.ToShortDateString()</small>
+                                </div>
+                                <p class="mb-1">@ads.Description</p>
+                                <small>Posted by: @ads.RequestedBy</small>
+                            </a>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info text-center col-md-12">
+                        <b>NOTE:</b>&nbsp;No advertisements posted.
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom:30px">
+                <h3>
+                    <img src="~/images/code_f.png" width="64" />
+                    <span style="font-family:Calibri">&nbsp;&nbsp;Site Features and Functionalities</span>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <img src="~/images/search_f.png" width="128" />
+                <h2 class="text-muted" style="margin-top:30px;margin-bottom:30px;">Search Online</h2>
+                <p class="text-justify" style="line-height:30px">
+                    Through this site, students and/or professors can browse the
+                    books they will be needing by title or by book category.
+                </p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="~/images/money_f.png" width="128" />
+                <h2 class="text-muted" style="margin-top:30px;margin-bottom:30px;">Price</h2>
+                <p class="text-justify" style="line-height:30px">
+                    Aside from its search functionality, students and/or professors
+                    can check out the prices of these books from its sellers
+                </p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="~/images/access_f.png" width="128" />
+                <h2 class="text-muted" style="margin-top:30px;margin-bottom:30px;">Accessibility</h2>
+                <p class="text-justify" style="line-height:30px">
+                    This site can be accessed or used on a desktop or mobile with
+                    an available network. In addition, students and/or professors
+                    can post the books they want to sell to other peers.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="container" style="margin-top:80px;margin-bottom:80px;font-size:16pt">
+        <hr style="padding-bottom:16px" />
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2020-2020 PaperBack Group - Centennial College</p>
+    </footer>
+
+</body>
+</html>

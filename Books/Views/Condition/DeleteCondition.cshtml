@@ -1,0 +1,21 @@
+﻿@model SearchListViewModel
+
+@{
+    Layout = "_LayoutPage";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-6">
+        <div class="card text-center" style="border:0">
+            <img class="card-img-top img-thumbnail img-deleted"
+                    src="~/images/expired.png" alt="success image">
+            <div class="card-body">
+                <h5 class="card-title">Condition @Model.conditionsListViewModel.condition.Description has been deleted.</h5>
+                <a asp-controller="Condition" asp-action="ListCondition"
+                    class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">&nbsp;</div>
+</div>

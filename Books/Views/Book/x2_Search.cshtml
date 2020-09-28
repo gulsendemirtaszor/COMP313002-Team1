@@ -1,0 +1,51 @@
+﻿@{ 
+    Layout = "_LayoutPage";
+}
+
+    <div class="container" style="padding-top:50px">
+        <h2>Search Result(s)</h2>
+        <hr />
+
+        <br />
+
+        <table class="table table-responsive table-bordered">
+            <thead style="background-color:cornflowerblue;color:#fff;text-align:center">
+                <tr>
+                    <td>ISBN</td>
+                    <td>Title</td>
+                    <td>Author</td>
+                    <td>Category</td>
+                    <td>Conditions</td>
+                    <td>Publication Date</td>
+                    <td>Price</td>
+                    <td>Preview</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>978-1-4842-3017-6</td>
+                    <td>Pro C# 7</td>
+                    <td>Troelsen, Andrew, Japiske, Philip</td>
+                    <td>Programming</td>
+                    <td>Good condition</td>
+                    <td>2017</td>
+                    <td>$62.72</td>
+                    <td>
+                        <button class="btn btn-info">Click here to view</button>
+                    </td>
+                </tr>
+                @*@foreach (Books.Models.Book b in Model.Books)
+                {
+                    <tr>
+                        <td>@b.Title</td>
+                        <td>@b.Author</td>
+                        <td>@b.Category</td>
+                        <td>@b.Conditions</td>
+                        <td>@b.PublicationDate</td>
+                        <td>@b.Price</td>
+                        <td>@b.Preview</td>
+                    </tr>
+                }*@
+            </tbody>
+        </table>
+    </div>

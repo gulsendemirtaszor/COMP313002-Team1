@@ -1,0 +1,179 @@
+﻿@model SearchListViewModel
+
+@{
+    Layout = "_LayoutPage";
+}
+
+    <div class="container" style="padding-top:50px;margin-bottom:80px">
+        <h2>Search Result(s)</h2>
+        <hr />
+
+        @if (TempData["searchMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <b>NOTE:</b>&nbsp;@TempData["searchMessage"]
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success text-center">
+                <b>NOTE:</b>&nbsp;Result has been successfully loaded
+            </div>
+
+            <table class="table table-bordered">
+                <thead style="background-color:cornflowerblue;color:#fff;text-align:center">
+                    <tr>
+                        <td>ISBN</td>
+                        <td>Title</td>
+                        <td>Author</td>
+                        <td>Category</td>
+                        <td>Conditions</td>
+                        <td>Publication Date</td>
+                        <td>Price</td>
+                        <td>Preview</td>
+                        <td>Contact Info</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(Book b in Model.bookInfoListViewModel.MyBooks)
+                    {
+                        <tr>
+                            <td>@b.Isbn</td>
+                            <td>@b.Title</td>
+                            <td>@b.Author</td>
+
+                            @{
+                                foreach (Category c in Model.bookInfoListViewModel.Categories
+                                    .Where(c => c.Id == @b.Category))
+                                {
+                                    <td>@c.Name</td>
+                                }
+                            }
+
+                            <td>@b.Conditions</td>
+                            <td>@b.PublicationDate</td>
+                            <td>@b.Price</td>
+
+                            <td align="center">
+                                @b.Preview
+                                @*<img src="~/images/books.png" width="32" />*@
+                                @*<i class="fa fa-search"></i>*@
+
+                                @foreach (var ri in Model.bookInfoListViewModel.MyBookImages
+                                    .Where(mr => mr.Id == b.Id))
+                                {
+                                    <a href="#" data-toggle="modal" data-target="#imageModal_@b.Id">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+
+                                    <!-- Image Modal -->
+                                    <div class="modal fade" id="imageModal_@b.Id" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="imageModalLabel">@b.Title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img class="img-thumbnail" src="~/uploads/@ri.BookImageThumbnail" style="width:100%" />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+                            <td align="center">
+                                @foreach (var usr in Model.appUserListViewModel.appUsers
+                                    .Where(u => u.UserName == @b.UserName))
+                                {
+                                    <a href="#" data-toggle="modal" data-target="#contactModal_@b.Id">
+                                        <i class="fa fa-user-circle"></i>
+                                    </a>
+
+                                    <!-- Contact Modal -->
+                                    <div class="modal fade" id="contactModal_@b.Id" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="contactModalLabel">Contact Information</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-left">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Name:</label>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                                                    </div>
+                                                                    @{ 
+                                                                        var completeName = usr.FirstName + " " + usr.LastName;
+                                                                    }
+                                                                    <input class="form-control" value="@completeName" readonly="readonly" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label asp-for="@usr.ContactNumber">Contact Number:</label>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                                    </div>
+                                                                    <input asp-for="@usr.ContactNumber" class="form-control" readonly="readonly"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label asp-for="@usr.EmailAddress">Email Address:</label>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                                    </div>
+                                                                    <input asp-for="@usr.EmailAddress" class="form-control" readonly="readonly" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                    @*@foreach (Books.Models.Book b in Model.Books)
+                    {
+                        <tr>
+                            <td>@b.Title</td>
+                            <td>@b.Author</td>
+                            <td>@b.Category</td>
+                            <td>@b.Conditions</td>
+                            <td>@b.PublicationDate</td>
+                            <td>@b.Price</td>
+                            <td>@b.Preview</td>
+                        </tr>
+                    }*@
+                </tbody>
+            </table>
+        }
+    </div>
+    

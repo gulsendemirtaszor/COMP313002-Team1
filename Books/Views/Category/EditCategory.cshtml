@@ -1,0 +1,49 @@
+﻿@model SearchListViewModel
+
+@{
+    Layout = "_LayoutPage";
+}
+
+<h3 style="margin-top:30px;color:#1F618D"><i class="fa fa-edit"></i>&nbsp;@ViewBag.Title</h3>
+<hr />
+
+@if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+{
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <b>NOTE:</b>&nbsp;@Html.ValidationSummary(true)
+    </div>
+}
+
+<form asp-action="EditCategory" method="post">
+    <input type="hidden" asp-for="@Model.categoriesListViewModel.category.Id" />
+
+    @await Html.PartialAsync("AddCategoryInfo")
+
+    @*<input class="btn btn-primary" type="submit" value="Update" />
+        <input class="btn btn-secondary" value="Cancel" onclick="window.location = '@Url.Action("Index", "Home")'" />*@
+
+    <hr />
+    <center style="margin-bottom:80px">
+        <button type="submit" class="btn btn-primary w-25">
+            <i class="fa fa-save"></i>&nbsp;Update
+        </button>
+        <a asp-action="ListCategory" class="btn btn-secondary w-25">
+            <i class="fa fa-ban"></i>&nbsp;Cancel
+        </a>
+    </center>
+</form>
+
+@*<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Edit Category</h5>
+        <form class="p-3" asp-action="EditCategory" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            @await Html.PartialAsync("AddCategoryInfo")
+
+            <input class="btn btn-primary" type="submit" value="Update" />
+            <input class="btn btn-secondary" value="Cancel" onclick="window.location = '@Url.Action("Index", "Home")'" />
+        </form>
+    </div>
+</div>*@

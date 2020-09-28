@@ -1,0 +1,102 @@
+﻿@model SearchListViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info text-center">
+            <b>NOTE:</b>&nbsp;Please fill-up all fields below
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.FirstName">First Name:</label>
+            <div><span asp-validation-for="@Model.appUser.FirstName" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-alt-circle-right"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.FirstName" class="form-control" placeholder="-----" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.MiddleName">Middle Name:</label>
+            <div><span asp-validation-for="@Model.appUser.MiddleName" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-alt-circle-right"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.MiddleName" class="form-control" placeholder="-----" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.LastName">Last Name:</label>
+            <div><span asp-validation-for="@Model.appUser.LastName" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-alt-circle-right"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.LastName" class="form-control" placeholder="-----" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.Address">Address:</label>
+            <div><span asp-validation-for="@Model.appUser.Address" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-home"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.Address" class="form-control" placeholder="-----" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.ContactNumber">Contact Number:</label>
+            <div><span asp-validation-for="@Model.appUser.ContactNumber" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.ContactNumber" class="form-control" placeholder="xxx xxx-xxxx" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.Password">Password:</label>
+            <div><span asp-validation-for="@Model.appUser.Password" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user-lock"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.Password" class="form-control" type="password" placeholder="-----" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.appUser.EmailAddress">Email Address:</label>
+            <div><span asp-validation-for="@Model.appUser.EmailAddress" class="text-danger"></span></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+                <input asp-for="@Model.appUser.EmailAddress" class="form-control" placeholder="xxxx@xxx.xx | xxxx@xxx.xx.xx" />
+            </div>
+        </div>
+    </div>
+</div>

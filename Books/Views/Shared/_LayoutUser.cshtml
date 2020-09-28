@@ -1,0 +1,75 @@
+﻿@*@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+
+    <title>PaperBack</title>
+
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
+</head>
+<body>
+    <script src="~/lib/jquery/jquery.slim.min.js"></script>
+    <script src="~/lib/popper/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/">
+            <img src="~/images/books.png" class="img-fluid" width="64" />
+        </a>
+        <h4 style="padding-right:10px">PaperBack</h4>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="form-inline my-2 my-lg-0 mr-sm-2 w-100 justify-content-end">
+
+                @*@await Html.PartialAsync("BookSearch")*@
+
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Login or Register">
+                <a class="btn btn-outline-primary"
+                   asp-action="Register" asp-controller="Register">
+                    <i class="fa fa-pen"></i>&nbsp;Register
+                </a>
+                <a class="btn btn-outline-primary"
+                   asp-action="Login" asp-controller="Account">
+                    <i class="fa fa-key"></i>&nbsp;Login
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="row">
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+            <div class="col-md-1">&nbsp;</div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="container" style="margin-top:80px;margin-bottom:80px;font-size:16pt">
+        <hr style="padding-bottom:16px" />
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2020-2020 PaperBack Group - Centennial College</p>
+    </footer>
+
+</body>
+</html>

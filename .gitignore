@@ -1,0 +1,5 @@
+Books/obj/**
+Books/bin/**
+.vs/**
+*.png
+books/wwwroot/uploads/**
