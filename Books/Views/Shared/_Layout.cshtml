@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Books</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        .topbar .topbar-divider {
+            width: 0;
+            border-right: 1px solid #e3e6f0;
+            height: calc(4.375rem - 2rem);
+            margin: auto 1rem;
+        }
+
+        link .img-profile {
+            height: 1rem;
+            width: 1rem;
+            max-width: 1rem;
+            max-height: 1rem;
+        }
+
+        .rounded-circle {
+            border-radius: 50% !important;
+        }
+    </style>
+
+</head>
+<body>
+    <script src="~/lib/jquery/jquery.slim.min.js"></script>
+    <script src="~/lib/popper/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <span class="img-profile"><img src="~/images/books.png" width="42" height="42" /></span>
+        <a class="navbar-brand px-1 font-weight-bold" href="#">PaperBack</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        @*<div class="collapse navbar-collapse" id="navbarSupportedContent" style="min-height:3em">
+        <ul class="navbar-nav mr-auto">
+
+
+            @*<li class="nav-item"><span class="px-5">&nbsp;</span></li>
+        <li class="nav-item"><span>&nbsp;</span></li>*@
+        <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search" style="min-height:3em; min-width:45em">
+                @*<div class="col-auto my-1">*@
+                @*<label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>*@
+                <select class="custom-select mx-lg-2" id="inlineFormCustomSelect" style="min-height:3em;">
+                    <option selected>Category</option>
+                    <option value="1">Business</option>
+                    <option value="2">Computer Science & Information Systems</option>
+                    <option value="3">Economics</option>
+                    <option value="4">Education</option>
+                    <option value="5">Engineering</option>
+                    <option value="6">Humanities</option>
+                    <option value="7">Journalism, Media Studies & Communications</option>
+                    <option value="8">Law</option>
+                    <option value="9">Mathematics</option>
+                    <option value="10">Medicine</option>
+                    <option value="11">Natural Sciences</option>
+                    <option value="12">Sociology</option>
+                    <option value="13">Philosophy</option>
+                    <option value="14">Physics</option>
+                    <option value="15">Psychology</option>
+                </select>
+                @*<select class="custom-select mx-lg-2" id="inlineFormCustomSelect2" style="min-height:3em;">
+                    <option selected>City</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>*@
+                @*</div>*@
+                <button class="btn btn-outline-primary my-2 my-lg-0" type="submit" style="min-height:3em">Search</button>
+            </form>
+        </li>
+
+
+        </ul>
+        <div class="topbar-divider d-none d-sm-block"> &nbsp;</div>
+
+        @*<ul class="navbar-nav mr-auto pl-lg-2">
+            <li class="nav-item mx-lg-2"><a href="#" class="nav-link">Filter by price</a></li>
+        </ul>*@
+        <ul class="navbar-nav mr-auto pl-lg-5">
+            <li class="nav-item input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="From" placeholder="From">
+            </li>
+            <li class="nav-item input-group pl-lg-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="To" placeholder="To">
+            </li>
+        </ul>
+
+
+
+
+
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        @*<p class="nav-item pr-lg-5">
+            <a class="btn-link font-weight-bold" href="#register">Register</a> or
+            <a class="btn-link font-weight-bold" href="#login">Log In</a>
+        </p>*@
+        <div class="topbar-divider d-none d-sm-block"></div>
+        <div class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="usernameContent" class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome <b>user</b></span>
+                <img class="img-profile rounded-circle" src="~/images/user.png" width="40" height="40">
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="?view=profile">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Your Books
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <a class="nav-item nav-link
+                   @(ViewBag.Page == "RegisterAppUser" ? "active" : "")"
+           asp-action="Register"
+           asp-controller="Register">Create Registration<span class="sr-only"></span></a>
+
+        <a class="nav-item nav-link
+                   @(ViewBag.Page == "Search" ? "active" : "")"
+           asp-action="Search"
+           asp-controller="Book">Search Book<span class="sr-only"></span></a>
+
+        </div>
+
+
+
+    </nav>
+
+
+
+
+    @*<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link
+                       @(ViewBag.Page == "Home" ? "active" : "")"
+                       asp-controller="Book" asp-action="index">Home</a>
+
+                    <a class="nav-item nav-link
+                @(ViewBag.Page == "ListBooks" ? "active" : "")"
+                       asp-controller="Book" asp-action="ListBooks">Book List</a>
+
+                    <a class="nav-item nav-link
+                       @(ViewBag.Page == "AddBook" ? "active" : "")"
+                       asp-action="AddBook"
+                       asp-controller="Book">Add Book<span class="sr-only"></span></a>
+
+                    <a class="nav-item nav-link
+                       @(ViewBag.Page == "ListCategories" ? "active" : "")"
+                       asp-controller="Category"
+                       asp-action="ListCategory">Categories</a>
+
+                    <a class="nav-item nav-link
+                @(ViewBag.Page == "AddCategory" ? "active" : "")"
+                       asp-action="AddCategory"
+                       asp-controller="Category">Add Category<span class="sr-only">(current)</span></a>
+
+
+
+
+                </div>
+
+                <div class="input-group">
+                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+
+
+        </nav>*@
+
+
+    <div>
+        @RenderBody()
+    </div>
+    <div class="d-flex align-items-center text-center border-dark border-success" style="padding:5rem;">
+
+    </div>
+
+    <div class="d-flex align-items-center text-center border-dark border-success" style="padding:5rem;">
+
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Mathematics Formative Assessment</h4>
+                    <img class="img-fluid px-2" src="~/images/math1.jpeg" />
+                    <p class="card-text">Used - mint conditions: Available for pickup in Scarborough</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Physics for Scientists and Engineers</h4>
+                    <img class="img-fluid px-2" src="~/images/physics.jpg" />
+                    <p class="card-text">
+                        Physics for Scientists and Engineers (9th edition) by Raymond A. Serway, John W. Jewett Jr. (Hardcover)
+
+                        Unused book - like new. Whether you need this for a course or to satisfy your physics needs, be sure to get it for a lower price on here
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Single Variable Calculus</h4>
+                    <img class="img-fluid px-2" src="~/images/math2.jpeg" />
+                    <p class="card-text">
+                        Brand new: Single Variable Calculus- Early Transcendentals by James StewartJanuary 1, 2015<br />
+                        Available for pickup in Toronto
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

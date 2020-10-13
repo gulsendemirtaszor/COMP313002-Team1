@@ -1,0 +1,50 @@
+﻿@model SearchListViewModel
+
+@*<div asp-validation-summary="All"></div>*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info text-center">
+            <b>NOTE:</b>&nbsp;Please fill-up all fields below
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.categoriesListViewModel.category.Name">Title: </label>
+            <div><span asp-validation-for="@Model.categoriesListViewModel.category.Name" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.categoriesListViewModel.category.Name" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.categoriesListViewModel.category.Description">Description: </label>
+            <div><span asp-validation-for="@Model.categoriesListViewModel.category.Description" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.categoriesListViewModel.category.Description" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.categoriesListViewModel.category.Notes">Notes: </label>
+            <div><span asp-validation-for="@Model.categoriesListViewModel.category.Notes" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.categoriesListViewModel.category.Notes" />
+        </div>
+    </div>
+</div>
+
+@*<div class="form-group">
+    <label asp-for="Name">Name: </label>
+    <input class="form-control" asp-for="Name" />
+</div>
+
+<div class="form-group">
+    <label asp-for="Description">Description: </label>
+    <input class="form-control" asp-for="Description" />
+</div>
+
+<div class="form-group">
+    <label asp-for="Notes">Notes: </label>
+    <textarea class="form-control" rows="5" asp-for="Notes"></textarea>
+</div>*@

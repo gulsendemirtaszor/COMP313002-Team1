@@ -1,0 +1,49 @@
+﻿@model SearchListViewModel
+@using System.Threading;
+
+@{
+    Layout = "_LayoutHome";
+}
+
+<div class="container" style="margin-bottom:30px">
+    <h3>
+        <img src="~/images/books_f.png" width="64" />
+        <span style="font-family:Calibri">&nbsp;&nbsp;Recommended Books</span>
+    </h3>
+</div>
+
+@{
+    var bookRecords = Model.booksListViewModel.Books;
+    int bookRecordsCount = bookRecords.Count();
+    int getIndex = new Random().Next(bookRecordsCount);
+
+    <div style="margin-bottom:50px">
+
+        <div class="row">
+            @foreach (var b in bookRecords.Skip(getIndex).Take(3))
+            {
+                <div class="col-lg-4">
+                    <div class="card">
+                        @foreach (BookImage bi in Model.bookInfoListViewModel.MyBookImages
+                          .Where(i => i.Id == @b.Id))
+                        {
+                            <img class="card-img-top" src="~/uploads/@bi.BookImageThumbnail" alt="Card image cap">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@b.Title</h5>
+                            <p class="card-text">
+                                @b.FullDescription
+                            </p>
+                            <a asp-action="Viewbook" asp-route-id="@b.Id" class="btn btn-primary">
+                                @{
+                                    TempData["pageRoute"] = "fromHome";
+                                }
+                                <i class="fa fa-eye"></i>&nbsp;View Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

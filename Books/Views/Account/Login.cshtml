@@ -1,0 +1,162 @@
+﻿@model SearchListViewModel
+
+@{
+    Layout = "_LayoutPage";
+}
+
+<center>
+    <div class="col-md-6 text-left">
+        <h3 style="margin-top:30px" class="text-left">Please sign-in</h3>
+        <hr />
+
+        @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <b>NOTE:</b>&nbsp;@Html.ValidationSummary(true)
+            </div>
+        }
+
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+        <form asp-action="Login" asp-controller="Account" method="post">
+            <input type="hidden" asp-for="@Model.loginModel.ReturnUrl" />
+
+            @*<img class="mb-4" src="~/images/books.png" alt="" width="96" height="96">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>*@
+
+            <label asp-for="@Model.loginModel.UserName" class="sr-only">Username</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" asp-for="@Model.loginModel.UserName" class="form-control" placeholder="Username"
+                    required autofocus autocomplete="off">
+            </div>
+
+            <label for="Password" class="sr-only">Password</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                </div>
+                <input type="password" asp-for="@Model.loginModel.Password" class="form-control" placeholder="Password"
+                    required autocomplete="off">
+            </div>
+
+            @*<div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>*@
+
+            <hr />
+            <center>
+                <button class="btn btn-primary" type="submit">Sign in</button>
+                <a asp-action="index" asp-controller="Book" class="btn btn-secondary">Cancel</a>
+            </center>
+        </form>
+    </div>
+</center>
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet"
+            asp-href-include="/lib/bootstrap/**/*.min.css"
+            asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <script src="/lib/jquery/jquery.min.js"></script>
+    <script src="/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <title>@ViewBag.Title</title>
+    <style>
+        html,
+body {
+    height: 100%;
+}
+
+body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .checkbox {
+    font-weight: 400;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+    </style>
+</head>*@
+
+@*<form asp-action="Login" asp-controller="Account" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <div><span asp-validation-for="UserName" class="text-danger"></span></div>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+        <input asp-for="Password" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Login</button>
+</form>*@
+
+@*<body class="text-center">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-action="Login" asp-controller="Account" method="post" class="form-signin">
+        <input type="hidden" asp-for="ReturnUrl" />
+        <img class="mb-4" src="~/images/books.png" alt="" width="96" height="96">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label asp-for="UserName" class="sr-only">Username</label>
+        <input type="text" asp-for="UserName" class="form-control" placeholder="Username" required autofocus>
+        <label for="Password" class="sr-only">Password</label>
+        <input type="password" asp-for="Password" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    </form>
+</body>
+</html>*@

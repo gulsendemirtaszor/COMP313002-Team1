@@ -1,0 +1,62 @@
+﻿@model Books.Models.BookImage
+
+    <div class="row">
+        <div class="col-md-6">
+            <label asp-for="BookImageThumbnail">Image</label>
+            <div class="input-group">
+                @{
+                    if (Model.BookImageThumbnail == null || Model.BookImageThumbnail == "")
+                    {
+                        <div class="form-control-file">
+                            <input type="file" name="thumbnail" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-file-alt"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" asp-for="BookImageThumbnail"
+                               placeholder="-----" readonly="readonly" />
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="BookImageCode">Related Image(s)</label>
+            <div class="input-group">
+                <div class="form-control-file">
+                    <input type="file" name="relatedImages" multiple="multiple" />
+                </div>
+            </div>
+
+            @{
+                if (Model.BookImageCode == null || Model.BookImageCode == "" ||
+                        Model.BookImageCode == "0")
+
+                {
+                    string folderCode = string.Empty;
+                    folderCode = System.Guid.NewGuid().ToString();
+
+                    <input type="hidden" asp-for="BookImageCode" class="form-control"
+                           value="@folderCode" readonly="readonly" />
+                }
+                else
+                {
+                    <input type="hidden" asp-for="BookImageCode" class="form-control"
+                           readonly="readonly" />
+                }
+            }
+        </div>
+    </div>
+
+<div class="mb-3">
+    
+
+    <div class="mb-3">
+        
+    </div>
+
+</div>

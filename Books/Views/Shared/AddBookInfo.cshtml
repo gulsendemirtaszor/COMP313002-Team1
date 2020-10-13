@@ -1,0 +1,171 @@
+﻿@model SearchListViewModel
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@*<div asp-validation-summary="All"></div>*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info text-center">
+            <b>NOTE:</b>&nbsp;Please fill-up all fields below
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.Title">Title: </label>
+            <div><span asp-validation-for="@Model.bookInfoListViewModel.book.Title" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.bookInfoListViewModel.book.Title" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.Category">Category type:</label>
+            <div><span asp-validation-for="@Model.bookInfoListViewModel.book.Category" class="text-danger"></span></div>
+            <select class="form-control" asp-for="@Model.bookInfoListViewModel.book.Category">
+
+                @if (Model.bookInfoListViewModel.book != null &&
+                  Model.bookInfoListViewModel.book.Category != 0)
+                {
+                    @foreach (var r in Model.bookInfoListViewModel.Categories)
+                    {
+                        @if (r.Id == Model.bookInfoListViewModel.book.Category)
+                        {
+                            <option value="@r.Id" selected>@r.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@r.Id">@r.Name</option>
+                        }
+                    }
+                }
+                else
+                {
+                    <option value="">Choose an option</option>
+                }
+
+                @foreach (var r in Model.bookInfoListViewModel.Categories)
+                {
+
+                    <option value=@r.Id>@r.Name</option>
+                }
+
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.Author">Author: </label>
+            <div><span asp-validation-for="@Model.bookInfoListViewModel.book.Author" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.bookInfoListViewModel.book.Author" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.Conditions">Book Conditions:</label>
+            <div><span asp-validation-for="@Model.bookInfoListViewModel.book.Conditions" class="text-danger"></span></div>
+            <select class="form-control" asp-for="@Model.bookInfoListViewModel.book.Conditions">
+                <option value="">Choose an option</option>
+
+                @*@foreach (var cond in Model.conditionsListViewModel.Conditions)
+                    {
+                        <option value="@cond.Id">@cond.Description</option>
+                    }*@
+
+
+                @foreach (var cond in Model.conditionsListViewModel.Conditions)
+                {
+                    @if (cond.Id == Model.bookInfoListViewModel.book?.Conditions)
+                    {
+                        <option value="@cond.Id" selected>@cond.Description</option>
+                    }
+                    else
+                    {
+                        <option value="@cond.Id">@cond.Description</option>
+                    }
+                }
+
+
+
+                @*@foreach (var cond in Model.conditionsListViewModel.Conditions)
+                {
+
+                    <option value=@cond.Id>@cond.Description</option>
+                }*@
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.PublicationDate">Publication Date: </label>
+            <input type="date" class="form-control" asp-for="@Model.bookInfoListViewModel.book.PublicationDate" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.Edition">Edition: </label>
+            <input class="form-control" asp-for="@Model.bookInfoListViewModel.book.Edition" />
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.Isbn">ISBN: </label>
+            <input class="form-control" asp-for="@Model.bookInfoListViewModel.book.Isbn" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div>
+            <label asp-for="@Model.bookInfoListViewModel.book.Price">Price (to the nearest dollar): </label>
+            <div><span asp-validation-for="@Model.bookInfoListViewModel.book.Price" class="text-danger"></span></div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input type="text" asp-for="@Model.bookInfoListViewModel.book.Price" class="form-control" aria-label="Price (to the nearest dollar)">
+            <div class="input-group-append">
+                <span class="input-group-text">.00</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.FullDescription">Your Ad: </label>
+            <div><span asp-validation-for="@Model.bookInfoListViewModel.book.FullDescription" class="text-danger"></span></div>
+            <textarea class="form-control" rows="5" asp-for="@Model.bookInfoListViewModel.book.FullDescription"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.UserName">Added By: </label>
+            <input class="form-control" asp-for="@Model.bookInfoListViewModel.book.UserName"
+                   readonly="readonly" value="@User.Identity.Name" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="@Model.bookInfoListViewModel.book.CurrentDateTime">Date Added: </label>
+            <input type="datetime" class="form-control" asp-for="@Model.bookInfoListViewModel.book.CurrentDateTime"
+                   readonly="readonly" value="@DateTime.Now" />
+        </div>
+    </div>
+</div>

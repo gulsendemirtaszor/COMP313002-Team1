@@ -1,0 +1,25 @@
+﻿@model  AppUser
+
+@{
+    Layout = "_LayoutUser";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-6">
+        <div class="card text-center" style="border:0">
+            <img class="card-img-top img-thumbnail" src="~/images/success.png" alt="success image" 
+                    style="width:256px;height:256px;margin:auto;border:0">
+            <div class="card-body">
+                <h5 class="card-title">Thank you for registering!</h5>
+                <p class="card-text">You should receive an email containing the activation link associated to the username <b>@Model.UserName</b> shortly.</p>
+                <p class="card-text">
+                    If you prefer to verify your account by using your phone number 
+                    <a asp-action="VerifyBySms" asp-route-username="@Model.UserName">click Here to receive th code via SMS</a>
+                </p>               
+                <a href="../Book/index" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">&nbsp;</div>
+</div>

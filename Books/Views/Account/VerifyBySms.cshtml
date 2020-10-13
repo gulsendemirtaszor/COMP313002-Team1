@@ -1,0 +1,40 @@
+﻿@model  AppUser
+@{
+    Layout = "_LayoutUser";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-6">
+        <div class="card text-center" style="border:0">
+            <div class="card-body">
+                <h5 class="card-title">Verify by SMS</h5>
+                <p class="card-text">
+                    A message containing the verification code was sent to your number.
+                    <br />Insert the code below to continue
+                </p>
+
+
+                <form asp-action="VerifyBySms" method="post">
+                    <input type="hidden" asp-for="UserName" value="@Model.UserName" />
+                    <fieldset class="form-group">
+                        <label for="code">Insert verification code:</label>
+                        <input type="text" class="form-control form-control-lg col-xs-12" name="code" />
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        Verify
+                    </button>
+                </form>
+
+
+
+                <br />
+
+                    <a href="../Book/index" class="btn btn-primary">Back to Home</a>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">&nbsp;</div>
+</div>

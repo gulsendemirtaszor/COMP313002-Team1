@@ -1,0 +1,21 @@
+﻿@model SearchListViewModel
+
+@*<div asp-validation-summary="All"></div>*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info text-center">
+            <b>NOTE:</b>&nbsp;Please fill-up field below
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label asp-for="@Model.conditionsListViewModel.condition.Description">Description: </label>
+            <div><span asp-validation-for="@Model.conditionsListViewModel.condition.Description" class="text-danger"></span></div>
+            <input class="form-control" asp-for="@Model.conditionsListViewModel.condition.Description" />
+        </div>
+    </div>
+</div>

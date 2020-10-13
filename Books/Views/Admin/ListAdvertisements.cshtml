@@ -1,0 +1,89 @@
+﻿@model SearchListViewModel
+
+@{
+    Layout = "_LayoutPage";
+}
+
+<h3 style="margin-top:30px;color:#1F618D"><i class="fa fa-list"></i>&nbsp;@ViewBag.Title</h3>
+<hr />
+
+@if (TempData["errorMessage"] == null)
+{
+    @if (TempData["loadMessage"] != null)
+    {
+        <div class="alert alert-success text-center">
+            <i class="fa fa-check-circle"></i>&nbsp;@TempData["loadMessage"]
+        </div>
+    }
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-primary" style="text-align:center">
+                <th scope="col">Request #</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Requested By</th>
+                <th scope="col">Date Requested</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var ads in Model.advertisementsListViewModel.Advertisements)
+            {
+                <tr>
+                    <td>@ads.RequestId</td>
+                    <td>@ads.Title</td>
+                    <td>@ads.Description</td>
+                    <td>@ads.Status</td>
+                    <td>@ads.RequestedBy</td>
+                    <td>@ads.DateRequested</td>
+                    <td>
+                        @if (ads.Status != "Approved")
+                        {
+                            <a asp-action="EditAdvertisement" asp-route-requestId="@ads.RequestId">
+                                <i class="fa fa-edit"></i>&nbsp;Edit
+                            </a>
+                        }
+                        &nbsp;
+                        <a href="#" data-toggle="modal" data-target="#deleteModal_@ads.RequestId">
+                            <i class="fa fa-ban"></i>&nbsp;Delete
+                        </a>
+
+                        <div class="modal fade" id="deleteModal_@ads.RequestId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Delete Advertisement</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-left">
+                                        Are you sure to delete advertisement @ads.Title?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" asp-action="DeleteAdvertisement" asp-controller="Admin" asp-route-requestId="@ads.RequestId">
+                                            <i class="fa fa-check-circle"></i>&nbsp;Yes
+                                        </a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            <i class="fa fa-close"></i>&nbsp;No
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning text-center">
+        <i class="fa fa-exclamation-triangle"></i>&nbsp;@TempData["errorMessage"]
+    </div>
+}
