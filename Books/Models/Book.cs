@@ -57,6 +57,9 @@ namespace Books.Models
             Conditions = book.Conditions;
             FullDescription = book.FullDescription;
             Preview = book.Preview;
+
+
+
         }      
 
     }
