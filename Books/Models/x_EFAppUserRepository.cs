@@ -32,6 +32,7 @@ namespace Books.Models
                 appUser.UserType = "New";
                 appUser.Email = appUser.EmailAddress;
                 appUser.PhoneNumber = appUser.ContactNumber;
+                appUser.HideMap = appUser.HideMap;
                 context.AppUsers.Add(appUser);
             }
             else

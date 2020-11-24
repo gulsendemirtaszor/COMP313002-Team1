@@ -97,7 +97,7 @@
 
                                     <!-- Contact Modal -->
                                     <div class="modal fade" id="contactModal_@b.Id" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-dialog modal-open" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="contactModalLabel">Contact Information</h5>
@@ -105,50 +105,70 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Name:</label>
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
-                                                                    </div>
-                                                                    @{ 
-                                                                        var completeName = usr.FirstName + " " + usr.LastName;
-                                                                    }
-                                                                    <input class="form-control" value="@completeName" readonly="readonly" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label asp-for="@usr.ContactNumber">Contact Number:</label>
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                                                    </div>
-                                                                    <input asp-for="@usr.ContactNumber" class="form-control" readonly="readonly"/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label asp-for="@usr.EmailAddress">Email Address:</label>
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                                                    </div>
-                                                                    <input asp-for="@usr.EmailAddress" class="form-control" readonly="readonly" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+												<div class="modal-body text-left">
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label>Name:</label>
+																<div class="input-group mb-3">
+																	<div class="input-group-prepend">
+																		<span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+																	</div>
+																	@{
+																		var completeName = usr.FirstName + " " + usr.LastName;
+																	}
+																	<input class="form-control" value="@completeName" readonly="readonly" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label asp-for="@usr.ContactNumber">Contact Number:</label>
+																<div class="input-group mb-3">
+																	<div class="input-group-prepend">
+																		<span class="input-group-text"><i class="fa fa-phone"></i></span>
+																	</div>
+																	<input asp-for="@usr.ContactNumber" class="form-control" readonly="readonly" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label asp-for="@usr.EmailAddress">Email Address:</label>
+																<div class="input-group mb-3">
+																	<div class="input-group-prepend">
+																		<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+																	</div>
+																	<input asp-for="@usr.EmailAddress" class="form-control" readonly="readonly" />
+																</div>
+															</div>
+														</div>
+													</div>
+													@if (usr.HideMap == true)
+													{
+														<div class="row">
+															<div class="col-md-12">
+																<div class="form-group">
+																	<label asp-for="@usr.Address">Location:</label>
+																	<div class="input-group mb-3">
+
+																		<iframe width="550" height="350" frameborder="1"
+																				style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCjwxc5xUbiiZUtEnxWU78w0OyqwqgsV6s&q=@usr.Address&q=Space+Needle,Seattle+WA&zoom=18"
+																				allowfullscreen></iframe>
+																	</div>
+																</div>
+															</div>
+														</div>
+													}
+													else
+													{
+                                                        <img src="~/images/hidden.png" />
+													}
+													</div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>

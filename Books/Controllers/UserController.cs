@@ -48,7 +48,8 @@ namespace Books.Controllers
                 _editUser.Address = _model.appUser.Address;
                 _editUser.ContactNumber = _model.appUser.ContactNumber;
                 _editUser.Email = _model.appUser.EmailAddress;
-                _editUser.EmailAddress = _model.appUser.EmailAddress;                
+                _editUser.EmailAddress = _model.appUser.EmailAddress;
+                _editUser.HideMap = _model.appUser.HideMap;
             }
 
             IdentityResult _result = await this._userManager.UpdateAsync(_editUser);

@@ -63,30 +63,38 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label asp-for="@Model.appUser.ContactNumber">Contact Number:</label>
-            <div><span asp-validation-for="@Model.appUser.ContactNumber" class="text-danger"></span></div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                </div>
-                <input asp-for="@Model.appUser.ContactNumber" class="form-control" placeholder="xxx xxx-xxxx" />
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label asp-for="@Model.appUser.EmailAddress">Email Address:</label>
-            <div><span asp-validation-for="@Model.appUser.EmailAddress" class="text-danger"></span></div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                </div>
-                <input asp-for="@Model.appUser.EmailAddress" class="form-control" placeholder="xxxx@xxx.xx | xxxx@xxx.xx.xx" />
-            </div>
-        </div>
-    </div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="@Model.appUser.ContactNumber">Contact Number:</label>
+			<div><span asp-validation-for="@Model.appUser.ContactNumber" class="text-danger"></span></div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fa fa-phone"></i></span>
+				</div>
+				<input asp-for="@Model.appUser.ContactNumber" class="form-control" placeholder="xxx xxx-xxxx" />
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="@Model.appUser.EmailAddress">Email Address:</label>
+			<div><span asp-validation-for="@Model.appUser.EmailAddress" class="text-danger"></span></div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+				</div>
+				<input asp-for="@Model.appUser.EmailAddress" class="form-control" placeholder="xxxx@xxx.xx | xxxx@xxx.xx.xx" />
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<div class="input-group mb-3">
+					<label asp-for="@Model.appUser.HideMap">Check to show location: </label>
+				<input style="width:50px;" asp-for="@Model.appUser.HideMap" />
+			</div>
+		</div>
+	</div>
 </div>
 
 @*<div class="row">

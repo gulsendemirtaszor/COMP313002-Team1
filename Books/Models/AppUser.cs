@@ -49,6 +49,7 @@ namespace Books.Models
         public bool IsVerified { get; set; }
 
         public string VerificationCode { get; set; }
+        public bool HideMap { get; set; }
 
         //public string AppUserFK { get; set; }
 
@@ -64,6 +65,7 @@ namespace Books.Models
             this.EmailAddress = appUser.EmailAddress;
             this.IsVerified = appUser.IsVerified;
             this.VerificationCode = appUser.VerificationCode;
+            this.HideMap = appUser.HideMap;
         }
     }
 }

@@ -190,7 +190,8 @@ namespace Books.Migrations.AppIdentityDb
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Address")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<string>("ContactNumber")
                         .IsRequired();
@@ -201,13 +202,15 @@ namespace Books.Migrations.AppIdentityDb
                     b.Property<string>("FirstName")
                         .IsRequired();
 
+                    b.Property<bool?>("HideMap");
+
                     b.Property<bool>("IsVerified");
 
                     b.Property<string>("LastName")
                         .IsRequired();
 
                     b.Property<string>("MiddleName")
-                        .IsRequired();
+                        .HasMaxLength(1);
 
                     b.Property<string>("Password")
                         .IsRequired();

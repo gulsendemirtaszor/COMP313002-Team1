@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Books.Migrations.AppIdentityDb
 {
-    public partial class Identity : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +40,19 @@ namespace Books.Migrations.AppIdentityDb
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    MiddleName = table.Column<string>(maxLength: 1, nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(maxLength: 100, nullable: true),
+                    ContactNumber = table.Column<string>(nullable: true),
+                    UserType = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    IsVerified = table.Column<bool>(nullable: true),
+                    VerificationCode = table.Column<string>(nullable: true),
+                    HideMap = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {

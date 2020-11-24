@@ -1,5 +1,9 @@
 ﻿@model SearchListViewModel
-
+<style>
+	[type="checkbox"] {
+		vertical-align: middle;
+	}
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-info text-center">
@@ -75,28 +79,37 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label asp-for="@Model.appUser.Password">Password:</label>
-            <div><span asp-validation-for="@Model.appUser.Password" class="text-danger"></span></div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-user-lock"></i></span>
-                </div>
-                <input asp-for="@Model.appUser.Password" class="form-control" type="password" placeholder="-----" />
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label asp-for="@Model.appUser.EmailAddress">Email Address:</label>
-            <div><span asp-validation-for="@Model.appUser.EmailAddress" class="text-danger"></span></div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                </div>
-                <input asp-for="@Model.appUser.EmailAddress" class="form-control" placeholder="xxxx@xxx.xx | xxxx@xxx.xx.xx" />
-            </div>
-        </div>
-    </div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="@Model.appUser.Password">Password:</label>
+			<div><span asp-validation-for="@Model.appUser.Password" class="text-danger"></span></div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fa fa-user-lock"></i></span>
+				</div>
+				<input asp-for="@Model.appUser.Password" class="form-control" type="password" placeholder="-----" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="form-group">
+			<label asp-for="@Model.appUser.EmailAddress">Email Address:</label>
+			<div><span asp-validation-for="@Model.appUser.EmailAddress" class="text-danger"></span></div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+				</div>
+				<input asp-for="@Model.appUser.EmailAddress" class="form-control" placeholder="xxxx@xxx.xx | xxxx@xxx.xx.xx" />
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<div class="input-group mb-3 checkbox">
+				<label asp-for="@Model.appUser.HideMap">Check to show location: </label>
+				<input asp-for="@Model.appUser.HideMap" />
+			</div>
+		</div>
+	</div>
 </div>
